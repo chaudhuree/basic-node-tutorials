@@ -1,22 +1,11 @@
-const {readFile,writeFile}=require('fs')
-const util = require('util')
 
-const readfileAsync=util.promisify(readFile)
-const writefileAsync=util.promisify(writeFile)
+const EventEmitter=require('events')
+const chalk = require('chalk');
+const customEvent=new EventEmitter()
 
-const readWrite=async () =>{
-  try {
-    // read file
-    const first = await readfileAsync('./content/first.txt','utf8')
-    const second = await readfileAsync('./content/second.txt','utf8')
-    console.log("▶ ➡ file: app.js ➡ line 9 ➡ readWrite ➡ first", first);
-    console.log("▶ ➡ file: app.js ➡ line 11 ➡ readWrite ➡ second", second);
+customEvent.on('response',()=>{
+  console.log('successfully run event emitter')
+  console.log(chalk.bgGreenBright('successfully run event emitter'))
+} )
 
-    // write file
-    await writefileAsync('./content/readWriteFileAsync.txt',`awesome the text is: ${first} and ${second}`);
-
-  } catch (error) {
-    console.log(error);
-  }
-}
-readWrite()
+customEvent.emit('response')
