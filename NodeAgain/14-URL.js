@@ -1,3 +1,5 @@
+const http= require('http')
+const URL= require('url')
 var server=http.createServer(function (req,res) {
 
   var myURL="http://rabbil.com/blog.html?year=2020&month=july";
