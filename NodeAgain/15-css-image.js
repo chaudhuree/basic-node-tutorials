@@ -23,8 +23,13 @@ const server = http.createServer(function (req, res) {
     const image = readFileSync('image.jpg');
     res.write(image)
     res.end();
-  } else if (req.url = '/style.css') {
+  } else if (req.url === '/style.css') {
     const css = readFileSync('./content/style.css')
+    res.writeHead(200, { 'Content-Type': 'text/css' })
+    res.write(css)
+    res.end()
+  } else if (req.url === '/about.css') {
+    const css = readFileSync('./content/about.css')
     res.writeHead(200, { 'Content-Type': 'text/css' })
     res.write(css)
     res.end()
